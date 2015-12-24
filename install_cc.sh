@@ -44,7 +44,7 @@ function ioncube_install(){
 
 function php_install(){
 	echo -e "\e[32mStarting Install PHP-Fpm\e[m"
-	apt-get -y  --force-yes install php5-cli php5-common php5-fpm php5-cgi php5-mysql php5-gd
+	apt-get -y  --force-yes install php5-cli php5-common php5-fpm php5-cgi php5-mysql php5-gd php5-redis
 	sed -i "s/short_open_tag = Off/short_open_tag = On/" /etc/php5/fpm/php.ini
 	sed -i "s/memory_limit = 16M /memory_limit = 128M /" /etc/php5/fpm/php.ini
 	sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 20M /" /etc/php5/fpm/php.ini
@@ -56,7 +56,19 @@ function php_install(){
 	update-rc.d php5-fpm defaults
 	echo -e "\e[32mPHP-Fpm Install OK!\e[m"
 }
-
+function redis_install()
+	echo -e "\e[32mStarting Install Redis-3.0.6\e[m"
+	cd /usr/src
+	if [ ! -e ./redis-3.0.6.tar.gz ]; then
+		wget http://download.redis.io/releases/redis-3.0.6.tar.gz -O redis-3.0.6.tar.gz
+	fi
+	tar -xvzf redis-3.0.6.tar.gz
+	cd redis-3.0.6
+	./configure
+	make
+	make install
+	echo -e "\e[32mRedis Install OK!\e[m"
+	
 function mpg123_install(){
 	echo -e "\e[32mStarting Install MPG123\e[m"
 	cd /usr/src
@@ -489,6 +501,7 @@ fi
 	/bin/rm -rf ./asterccver1
 	apt_install
 	php_install
+	redis_install
 	dahdi_install
 	libpri_install
 	asterisk_install
