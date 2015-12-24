@@ -2,9 +2,9 @@
 
 function apt_install(){
 	echo "#added by astercc installation script" >> /etc/apt/sources.list
-	echo "deb http://ppa.launchpad.net/jdub/devel/ubuntu maverick main" >> /etc/apt/sources.list
-	echo "deb http://ppa.launchpad.net/brianmercer/php/ubuntu lucid main" >> /etc/apt/sources.list
-	echo "deb-src http://ppa.launchpad.net/brianmercer/php/ubuntu lucid main" >> /etc/apt/sources.list
+	echo "deb http://ppa.launchpad.net/jdub/devel/ubuntu trusty main" >> /etc/apt/sources.list
+	echo "deb http://ppa.launchpad.net/brianmercer/php/ubuntu trusty main" >> /etc/apt/sources.list
+	echo "deb-src http://ppa.launchpad.net/brianmercer/php/ubuntu trusty main" >> /etc/apt/sources.list
 	apt-get -y update
 	apt-get -y remove php* 
 	apt-get -y remove asterisk*
