@@ -487,19 +487,11 @@ function run() {
 downloadmirror=http://download3.astercc.org
 
 echo "please select the mirror you want to download from:"
-echo "1: German Server"
-echo "2: U.S. Server"
-echo "3: China Server (China Mobile)"
+echo "1: Huaqiao mirror Server"
 read downloadserver;
 
 if [ "$downloadserver" == "1"  ]; then
-	downloadmirror=http://download1.astercc.org;
-fi
-if [ "$downloadserver" == "2"  ]; then
-	downloadmirror=http://download2.astercc.org;
-fi
-if [ "$downloadserver" == "3"  ]; then
-	downloadmirror=http://download3.astercc.org;
+	downloadmirror=http://downcc.ucserver.org:8082/;
 fi
 
 	wget $downloadmirror/asterccver1 -t 5
