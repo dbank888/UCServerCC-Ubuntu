@@ -1,19 +1,5 @@
 #!/bin/bash
 
-# Auto install astercc commercial and related packages for Ubuntu/Debian
-# By Solo #### solo@astercc.org last modify 2012-04-17
-# By Solo #### solo@astercc.org last modify 2013-05-20, 修正了asterisk总是使用asterccuser asterccsecret作为AMI用户的bug
-# By Solo #### solo@astercc.org last modify 2013-11-22, support php5-fpm 5.4
-# By Solo #### solo@astercc.org last modify 2013-12-12, 增加了postfix安装
-# By Solo #### solo@astercc.org last modify 2014-02-07, 禁用了netjet dahdi驱动
-
-
-
-#downloadmirror=http://download1.astercc.org
-
-#downloadmirror=http://astercc.org/download
-#downloadmirror=http://download3.astercc.org
-
 function apt_install(){
 	echo "#added by astercc installation script" >> /etc/apt/sources.list
 	echo "deb http://ppa.launchpad.net/jdub/devel/ubuntu maverick main" >> /etc/apt/sources.list
