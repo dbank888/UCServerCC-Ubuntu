@@ -482,14 +482,14 @@ function get_mysql_passwd(){
 
 function run() {
 
-downloadmirror=http://download3.astercc.org
+downloadmirror=http://downcc.ucserver.org:8082/Files
 
 echo "please select the mirror you want to download from:"
 echo "1: Huaqiao mirror Server"
 read downloadserver;
 
 if [ "$downloadserver" == "1"  ]; then
-	downloadmirror=http://downcc.ucserver.org:8082/;
+	downloadmirror=http://downcc.ucserver.org:8082/Files;
 fi
 
 	wget $downloadmirror/asterccver1 -t 5
