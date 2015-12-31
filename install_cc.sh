@@ -11,7 +11,7 @@ function apt_install(){
 	apt-get -y update
 	apt-get -y remove php* 
 	apt-get -y remove asterisk*
-	apt-get -y --force-yes install postfix hylafax-client hylafax-server iaxmodem cron mysql-server mysql-client ncurses-dev build-essential sox  make bison flex libssl-dev unzip libpcre3 libpcre3-dev unzip make
+	apt-get -y install python-software-properties postfix hylafax-client hylafax-server iaxmodem cron mysql-server mysql-client ncurses-dev build-essential sox  make bison flex libssl-dev unzip libpcre3 libpcre3-dev unzip make
 	apt-get -y linux-image-$(uname -r)
 	apt-get -y sudo
 	service cron start
