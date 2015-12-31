@@ -69,6 +69,9 @@ function redis_install(){
 	./configure
 	make
 	make install
+	bash ./utils/install_server.sh
+	mv /etc/init.d/redis_6379 /etc/init.d/redis
+	chkconfig redis on
 	echo -e "\e[32redis Install OK!\e[m"
 }
 
