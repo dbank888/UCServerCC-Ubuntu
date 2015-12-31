@@ -56,7 +56,7 @@ function php_install(){
 	update-rc.d php5-fpm defaults
 	echo -e "\e[32mPHP-Fpm Install OK!\e[m"
 }
-function redis_install()
+function redis_install(){
 	echo -e "\e[32mStarting Install Redis-3.0.6\e[m"
 	cd /usr/src
 	if [ ! -e ./redis-3.0.6.tar.gz ]; then
@@ -68,7 +68,7 @@ function redis_install()
 	make
 	make install
 	echo -e "\e[32mRedis Install OK!\e[m"
-	
+}	
 function mpg123_install(){
 	echo -e "\e[32mStarting Install MPG123\e[m"
 	cd /usr/src
