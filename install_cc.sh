@@ -239,7 +239,7 @@ function libpri_install() {
 	echo -e "\e[32mStarting Install LibPRI\e[m"
 	cd /usr/src
 	if [ ! -e ./libpri-$libpriver.tar.gz ]; then
-		wget http://downloads.asterisk.org/pub/telephony/libpri/releases/libpri-$libpriver.tar.gz
+		wget $downloadmirror/libpri-$libpriver.tar.gz
 	fi
 	tar zxf libpri-$libpriver.tar.gz
 	if [ $? != 0 ]; then
