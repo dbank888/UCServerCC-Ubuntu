@@ -60,6 +60,20 @@ function php_install(){
 	echo -e "\e[32mPHP-Fpm Install OK!\e[m"
 }
 
+function redis_install(){
+	echo -e "\e[32mStarting Install Redis 3.0.6\e[m"
+	cd /usr/src
+	if [ ! -e ./redis-3.0.6.tar.gz ]; then
+		wget $downloadmirror/redis-3.0.6.tar.gz
+	fi
+	tar -xvzf redis-3.0.6.tar.gz
+	cd redis-3.0.6
+	./configure
+	make
+	make install
+	echo -e "\e[32redis Install OK!\e[m"
+}
+
 function mpg123_install(){
 	echo -e "\e[32mStarting Install MPG123\e[m"
 	cd /usr/src
@@ -500,6 +514,7 @@ fi
 	/bin/rm -rf ./asterccver1
 	apt_install
 	php_install
+	redis_install
 	dahdi_install
 	libpri_install
 	asterisk_install
