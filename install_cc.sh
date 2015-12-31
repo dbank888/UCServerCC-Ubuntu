@@ -488,28 +488,20 @@ function run() {
 downloadmirror=http://download3.astercc.org
 
 echo "please select the mirror you want to download from:"
-echo "1: German Server"
-echo "2: U.S. Server"
-echo "3: China Server (China Mobile)"
+echo "1: HuaQiao Mirror Server"
 read downloadserver;
 
 if [ "$downloadserver" == "1"  ]; then
-	downloadmirror=http://download1.astercc.org;
-fi
-if [ "$downloadserver" == "2"  ]; then
-	downloadmirror=http://download2.astercc.org;
-fi
-if [ "$downloadserver" == "3"  ]; then
-	downloadmirror=http://download3.astercc.org;
+	downloadmirror=http://downcc.ucserver.org:8082/Files;
 fi
 
-	wget $downloadmirror/asterccver1 -t 5
-	if [ ! -e ./asterccver1 ]; then
+	wget $downloadmirror/ucservercc1 -t 5
+	if [ ! -e ./ucservercc1 ]; then
 		echo "failed to get version infromation,please try again"
 		exit 1;
 	fi
-	. ./asterccver1
-	/bin/rm -rf ./asterccver1
+	. ./ucservercc1
+	/bin/rm -rf ./ucservercc1
 	apt_install
 	php_install
 	redis_install
