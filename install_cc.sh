@@ -1,10 +1,24 @@
 #!/bin/bash
 
+# Auto install astercc commercial and related packages for Ubuntu/Debian
+# By Solo #### solo@astercc.org last modify 2012-04-17
+# By Solo #### solo@astercc.org last modify 2013-05-20, 淇浜哸sterisk鎬绘槸浣跨敤asterccuser asterccsecret浣滀负AMI鐢ㄦ埛鐨刡ug
+# By Solo #### solo@astercc.org last modify 2013-11-22, support php5-fpm 5.4
+# By Solo #### solo@astercc.org last modify 2013-12-12, 澧炲姞浜唒ostfix瀹夎
+# By Solo #### solo@astercc.org last modify 2014-02-07, 绂佺敤浜唍etjet dahdi椹卞姩
+
+
+
+#downloadmirror=http://download1.astercc.org
+
+#downloadmirror=http://astercc.org/download
+#downloadmirror=http://download3.astercc.org
+
 function apt_install(){
 	echo "#added by astercc installation script" >> /etc/apt/sources.list
-	echo "deb http://ppa.launchpad.net/jdub/devel/ubuntu trusty main" >> /etc/apt/sources.list
-	echo "deb http://ppa.launchpad.net/brianmercer/php/ubuntu trusty main" >> /etc/apt/sources.list
-	echo "deb-src http://ppa.launchpad.net/brianmercer/php/ubuntu trusty main" >> /etc/apt/sources.list
+	echo "deb http://ppa.launchpad.net/jdub/devel/ubuntu maverick main" >> /etc/apt/sources.list
+	echo "deb http://ppa.launchpad.net/brianmercer/php/ubuntu lucid main" >> /etc/apt/sources.list
+	echo "deb-src http://ppa.launchpad.net/brianmercer/php/ubuntu lucid main" >> /etc/apt/sources.list
 	apt-get -y update
 	apt-get -y remove php* 
 	apt-get -y remove asterisk*
@@ -44,7 +58,7 @@ function ioncube_install(){
 
 function php_install(){
 	echo -e "\e[32mStarting Install PHP-Fpm\e[m"
-	apt-get -y  --force-yes install php5-cli php5-common php5-fpm php5-cgi php5-mysql php5-gd php5-redis
+	apt-get -y  --force-yes install php5-cli php5-common php5-fpm php5-cgi php5-mysql php5-gd
 	sed -i "s/short_open_tag = Off/short_open_tag = On/" /etc/php5/fpm/php.ini
 	sed -i "s/memory_limit = 16M /memory_limit = 128M /" /etc/php5/fpm/php.ini
 	sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 20M /" /etc/php5/fpm/php.ini
@@ -56,19 +70,7 @@ function php_install(){
 	update-rc.d php5-fpm defaults
 	echo -e "\e[32mPHP-Fpm Install OK!\e[m"
 }
-function redis_install(){
-	echo -e "\e[32mStarting Install Redis-3.0.6\e[m"
-	cd /usr/src
-	if [ ! -e ./redis-3.0.6.tar.gz ]; then
-		wget http://download.redis.io/releases/redis-3.0.6.tar.gz -O redis-3.0.6.tar.gz
-	fi
-	tar -xvzf redis-3.0.6.tar.gz
-	cd redis-3.0.6
-	./configure
-	make
-	make install
-	echo -e "\e[32mRedis Install OK!\e[m"
-}	
+
 function mpg123_install(){
 	echo -e "\e[32mStarting Install MPG123\e[m"
 	cd /usr/src
@@ -482,14 +484,22 @@ function get_mysql_passwd(){
 
 function run() {
 
-downloadmirror=http://downcc.ucserver.org:8082/Files
+downloadmirror=http://download3.astercc.org
 
 echo "please select the mirror you want to download from:"
-echo "1: Huaqiao mirror Server"
+echo "1: German Server"
+echo "2: U.S. Server"
+echo "3: China Server (China Mobile)"
 read downloadserver;
 
 if [ "$downloadserver" == "1"  ]; then
-	downloadmirror=http://downcc.ucserver.org:8082/Files;
+	downloadmirror=http://download1.astercc.org;
+fi
+if [ "$downloadserver" == "2"  ]; then
+	downloadmirror=http://download2.astercc.org;
+fi
+if [ "$downloadserver" == "3"  ]; then
+	downloadmirror=http://download3.astercc.org;
 fi
 
 	wget $downloadmirror/asterccver1 -t 5
@@ -501,7 +511,6 @@ fi
 	/bin/rm -rf ./asterccver1
 	apt_install
 	php_install
-	redis_install
 	dahdi_install
 	libpri_install
 	asterisk_install
