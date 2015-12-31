@@ -91,9 +91,9 @@ function dahdi_install() {
 	echo -e "\e[32mStarting Install DAHDI\e[m"
 	cd /usr/src
 	if [ ! -e ./dahdi-linux-complete-$dahdiver.tar.gz ]; then
-		wget http://downloads.asterisk.org/pub/telephony/dahdi-linux-complete/dahdi-linux-complete-$dahdiver.tar.gz
+		wget $downloadmirror/dahdi-linux-complete-$dahdiver.tar.gz
 		if [ ! -e ./dahdi-linux-complete-$dahdiver.tar.gz ]; then
-			wget http://downloads.asterisk.org/pub/telephony/dahdi-linux-complete/releases/dahdi-linux-complete-$dahdiver.tar.gz
+			wget $downloadmirror/dahdi-linux-complete/releases/dahdi-linux-complete-$dahdiver.tar.gz
 		fi
 	fi
 	tar zxf dahdi-linux-complete-$dahdiver.tar.gz
