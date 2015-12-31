@@ -146,7 +146,7 @@ function nginx_install(){
 	make
 	make install
 	wget $downloadmirror/nginx.ubuntu.zip -t 5
-	unzip ./nginx.debian.zip
+	unzip ./nginx.ubuntu.zip
 	mv ./nginx /etc/init.d/
 	chmod +x /etc/init.d/nginx
 	chkconfig nginx on
