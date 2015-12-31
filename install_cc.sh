@@ -45,7 +45,7 @@ function ioncube_install(){
 
 function php_install(){
 	echo -e "\e[32mStarting Install PHP-Fpm\e[m"
-	apt-get -y  --force-yes install php5-cli php5-common php5-fpm php5-cgi php5-mysql php5-gd
+	apt-get -y  --force-yes install php5-cli php5-common php5-fpm php5-cgi php5-mysql php5-gd php5-redis php5-curl
 	sed -i "s/short_open_tag = Off/short_open_tag = On/" /etc/php5/fpm/php.ini
 	sed -i "s/memory_limit = 16M /memory_limit = 128M /" /etc/php5/fpm/php.ini
 	sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 20M /" /etc/php5/fpm/php.ini
