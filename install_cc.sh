@@ -257,7 +257,7 @@ function nginx_conf_install(){
 	mkdir /var/www/html/asterCC/http-log
 cat >  /usr/local/nginx/conf/nginx.conf << EOF
 #user  nobody;
-worker_processes  1;
+worker_processes  auto;
 worker_rlimit_nofile 655350;
 
 #error_log  logs/error.log;
@@ -268,6 +268,7 @@ pid        /var/run/nginx.pid;
 
 
 events {
+    use epoll;
     worker_connections  1024;
 }
 
@@ -382,7 +383,7 @@ http {
           expires 1d;
         }
 
-        access_log /var/www/html/asterCC/http-log/access.log main;
+#        access_log /var/www/html/asterCC/http-log/access.log main;
     }
 }
 EOF
