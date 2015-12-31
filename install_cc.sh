@@ -4,14 +4,12 @@
 #downloadmirror=http://download3.astercc.org
 
 function apt_install(){
-	echo "#added by astercc installation script" >> /etc/apt/sources.list
-	echo "deb http://ppa.launchpad.net/jdub/devel/ubuntu maverick main" >> /etc/apt/sources.list
-	echo "deb http://ppa.launchpad.net/brianmercer/php/ubuntu lucid main" >> /etc/apt/sources.list
-	echo "deb-src http://ppa.launchpad.net/brianmercer/php/ubuntu lucid main" >> /etc/apt/sources.list
 	apt-get -y update
 	apt-get -y remove php* 
 	apt-get -y remove asterisk*
 	apt-get -y install python-software-properties postfix hylafax-client hylafax-server iaxmodem cron mysql-server mysql-client ncurses-dev build-essential sox  make bison flex libssl-dev unzip libpcre3 libpcre3-dev unzip make
+	add-apt-repository ppa:zanfur/php5.5
+	apt-get update
 	apt-get -y linux-image-$(uname -r)
 	apt-get -y sudo
 	service cron start
