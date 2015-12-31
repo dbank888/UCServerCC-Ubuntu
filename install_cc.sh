@@ -145,7 +145,7 @@ function nginx_install(){
 	./configure --add-module=/usr/src/nginx-push-stream-module-master --with-http_ssl_module  --user=asterisk --group=asterisk
 	make
 	make install
-	wget $downloadmirror/nginx.debian.zip -t 5
+	wget $downloadmirror/nginx.ubuntu.zip -t 5
 	unzip ./nginx.debian.zip
 	mv ./nginx /etc/init.d/
 	chmod +x /etc/init.d/nginx
