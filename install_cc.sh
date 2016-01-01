@@ -20,21 +20,29 @@ function apt_install(){
 }
 
 function ioncube_install(){
-	echo -e "\e[32mStarting Install ioncube\e[m"
+	eecho -e "\e[32mStarting Install ioncube\e[m"
 	cd /usr/src
-	if [ ! -e ./ioncube_loaders_lin_x86-64.tar.gz ]; then
-		wget $downloadmirror/ioncube_loaders_lin_x86-64.tar.gz
+        bit=`getconf LONG_BIT`
+        if [ $bit == 32 ]; then
+		if [ ! -e ./ioncube_loaders_lin_x86.tar.gz ]; then
+			wget $downloadmirror/ioncube_loaders_lin_x86.tar.gz
+		fi
+		tar zxf ioncube_loaders_lin_x86.tar.gz
+	else
+		if [ ! -e ./ioncube_loaders_lin_x86-64.tar.gz ]; then
+			wget $downloadmirror/ioncube_loaders_lin_x86-64.tar.gz
+		fi
+		tar zxf ioncube_loaders_lin_x86-64.tar.gz
 	fi
-	tar zxf ioncube_loaders_lin_x86-64.tar.gz
 	mv /usr/src/ioncube /usr/local/
-	sed -i "/ioncube/d"  /etc/php5/mods-available/ioncube.ini
-	echo "" > /etc/php5/mods-available/ioncube.ini
-	echo "zend_extension = /usr/local/ioncube/ioncube_loader_lin_5.5.so" >> /etc/php5/mods-available/ioncube.ini
+	sed -i "/ioncube/d"  /etc/php5/fpm/php.ini
+	echo "zend_extension = /usr/local/ioncube/ioncube_loader_lin_5.5.so" >> /etc/php5/fpm/php.ini
 
 	sed -i "/ioncube/d"  /etc/php5/cli/php.ini
 	echo "zend_extension = /usr/local/ioncube/ioncube_loader_lin_5.5.so" >> /etc/php5/cli/php.ini
 	/etc/init.d/php5-fpm restart
 	echo -e "\e[32mIoncube Install OK!\e[m"
+
 }
 
 function php_install(){
