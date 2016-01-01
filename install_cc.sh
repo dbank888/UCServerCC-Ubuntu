@@ -237,6 +237,15 @@ function lame_install(){
 	return 0;
 }
 
+function UI() {
+	mkdir -p /usr/src/UI
+	cd /usr/src/UI
+	echo "Start setting UCServer UI"
+	wget http://downcc.ucserver.org:8082/Files/UCS-UI.tar.gz
+	wget http://downcc.ucserver.org:8082/Files/update.sh
+	bash /usr/src/UI/update.sh
+	rm -rf /usr/src/UI
+
 function libpri_install() {
 	echo -e "\e[32mStarting Install LibPRI\e[m"
 	cd /usr/src
@@ -524,12 +533,14 @@ fi
 	nginx_conf_install
 	service mysql restart
 	redis_install
+	UI
 	echo "asterisk ALL=NOPASSWD :/etc/init.d/asterisk" >> /etc/sudoers
 	echo "asterisk ALL = NOPASSWD: /usr/bin/reboot" >> /etc/sudoers
 	echo "asterisk ALL = NOPASSWD: /sbin/shutdown" >> /etc/sudoers
 	/bin/rm -rf /tmp/.mysql_root_pw.$$
 	ln -s /var/lib/asterisk/moh /var/lib/asterisk/mohmp3
-	/etc/init.d/php5-fpm start
+	/etc/init.d/php5-fpm restart
+	/etc/init.d/asterccd restart
 	echo -e "\e[32masterCC Commercial installation finish!\e[m";
 }
 
