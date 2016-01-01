@@ -22,18 +22,10 @@ function apt_install(){
 function ioncube_install(){
 	echo -e "\e[32mStarting Install ioncube\e[m"
 	cd /usr/src
-        bit=`getconf LONG_BIT`
-        if [ $bit == 32 ]; then
-		if [ ! -e ./ioncube_loaders_lin_x86.tar.gz ]; then
-			wget http://downloads2.ioncube.com/loader_downloads/ioncube_loaders_lin_x86.tar.gz
-		fi
-		tar zxf ioncube_loaders_lin_x86.tar.gz
-	else
-		if [ ! -e ./ioncube_loaders_lin_x86-64.tar.gz ]; then
-			wget http://downloads2.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.tar.gz
-		fi
-		tar zxf ioncube_loaders_lin_x86-64.tar.gz
+	if [ ! -e ./ioncube_loaders_lin_x86-64.tar.gz ]; then
+		wget $downloadmirror/ioncube_loaders_lin_x86-64.tar.gz
 	fi
+	tar zxf ioncube_loaders_lin_x86-64.tar.gz
 	mv /usr/src/ioncube /usr/local/
 	sed -i "/ioncube/d"  /etc/php5/fpm/php.ini
 	echo "zend_extension = /usr/local/ioncube/ioncube_loader_lin_5.5.so" >> /etc/php5/fpm/php.ini
