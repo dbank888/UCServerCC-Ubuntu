@@ -27,8 +27,9 @@ function ioncube_install(){
 	fi
 	tar zxf ioncube_loaders_lin_x86-64.tar.gz
 	mv /usr/src/ioncube /usr/local/
-	sed -i "/ioncube/d"  /etc/php5/fpm/php.ini
-	echo "zend_extension = /usr/local/ioncube/ioncube_loader_lin_5.5.so" >> /etc/php5/fpm/php.ini
+	sed -i "/ioncube/d"  /etc/php5/mods-available/ioncube.ini
+	echo "" > /etc/php5/mods-available/ioncube.ini
+	echo "zend_extension = /usr/local/ioncube/ioncube_loader_lin_5.5.so" >> /etc/php5/mods-available/ioncube.ini
 
 	sed -i "/ioncube/d"  /etc/php5/cli/php.ini
 	echo "zend_extension = /usr/local/ioncube/ioncube_loader_lin_5.5.so" >> /etc/php5/cli/php.ini
