@@ -59,7 +59,6 @@ function redis_install(){
 	fi
 	tar -xvzf redis-3.0.6.tar.gz
 	cd redis-3.0.6
-	./configure
 	make
 	make install
 	bash ./utils/install_server.sh
