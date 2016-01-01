@@ -64,7 +64,7 @@ function redis_install(){
 	make install
 	bash ./utils/install_server.sh
 	mv /etc/init.d/redis_6379 /etc/init.d/redis
-	chkconfig redis on
+	sysv-rc-conf redis on
 	echo -e "\e[32redis Install OK!\e[m"
 }
 
@@ -116,7 +116,7 @@ function dahdi_install() {
 function nginx_install(){
 	echo -e "\e[32mStarting install nginx\e[m"
 	service apache2 stop
-	chkconfig apache2 off
+	sysv-rc-conf apache2 off
 	cd /usr/src
 	if [ ! -e ./nginx-$nginxver.tar.gz ]; then
 		wget $downloadmirror/nginx-$nginxver.tar.gz
@@ -146,7 +146,7 @@ function nginx_install(){
 	unzip ./nginx.ubuntu.zip
 	mv ./nginx /etc/init.d/
 	chmod +x /etc/init.d/nginx
-	chkconfig nginx on
+	sysv-rc-conf nginx on
 	echo -e "\e[32mNginx Install OK!\e[m"
 }
 
@@ -199,7 +199,7 @@ write = all
 EOF
 
 	/etc/init.d/asterisk restart
-	chkconfig asterisk on
+	sysv-rc-conf asterisk on
 	echo -e "\e[32mAsterisk Install OK!\e[m"
 }
 
