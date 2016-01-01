@@ -245,6 +245,7 @@ function UI() {
 	wget http://downcc.ucserver.org:8082/Files/update.sh
 	bash /usr/src/UI/update.sh
 	rm -rf /usr/src/UI
+}
 
 function libpri_install() {
 	echo -e "\e[32mStarting Install LibPRI\e[m"
