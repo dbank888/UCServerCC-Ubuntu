@@ -140,6 +140,7 @@ function nginx_install(){
 	./configure --add-module=/usr/src/nginx-push-stream-module-master --with-http_ssl_module  --user=asterisk --group=asterisk
 	make
 	make install
+	cd /usr/src
 	wget $downloadmirror/nginx.ubuntu.zip -t 5
 	unzip ./nginx.ubuntu.zip
 	mv ./nginx /etc/init.d/
