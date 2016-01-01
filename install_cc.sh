@@ -509,7 +509,6 @@ fi
 	/bin/rm -rf ./ucservercc1
 	apt_install
 	php_install
-	redis_install
 	dahdi_install
 	libpri_install
 	asterisk_install
@@ -523,6 +522,7 @@ fi
 	astercc_install
 	nginx_conf_install
 	service mysql restart
+	redis_install
 	echo "asterisk ALL=NOPASSWD :/etc/init.d/asterisk" >> /etc/sudoers
 	echo "asterisk ALL = NOPASSWD: /usr/bin/reboot" >> /etc/sudoers
 	echo "asterisk ALL = NOPASSWD: /sbin/shutdown" >> /etc/sudoers
