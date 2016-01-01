@@ -7,7 +7,7 @@ function apt_install(){
 	apt-get -y update
 	apt-get -y remove php* 
 	apt-get -y remove asterisk*
-	apt-get -y install python-software-properties chkconfig postfix hylafax-client hylafax-server iaxmodem cron  libncurses5-dev build-essential sox  make bison flex libssl-dev unzip libpcre3 libpcre3-dev unzip make sysv-rc-conf
+	apt-get -y install python-software-properties chkconfig unzip bzip2 postfix hylafax-client hylafax-server iaxmodem cron  libncurses5-dev build-essential sox  make bison flex libssl-dev unzip libpcre3 libpcre3-dev unzip make sysv-rc-conf
 	apt-get -y install mysql-server-5.6 mysql-server-core-5.6 mysql-client-5.6
 	add-apt-repository ppa:zanfur/php5.5
 	apt-get update
