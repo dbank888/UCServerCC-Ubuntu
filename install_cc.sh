@@ -530,7 +530,6 @@ fi
 	fi
 	. ./ucservercc1
 	/bin/rm -rf ./ucservercc1
-	check_version
 	apt_install
 	php_install
 	dahdi_install
