@@ -556,7 +556,7 @@ fi
 	ln -s /var/lib/asterisk/moh /var/lib/asterisk/mohmp3
 	service php5-fpm restart
 	service asterccd restart
-	echo -e "\e[32masterCC Commercial installation finish!\e[m";
+	echo -e "\e[32mUCServer-CC installation finished，Please mail to xuke@ucserver.cc to get License!\e[m";
 }
 
 run
