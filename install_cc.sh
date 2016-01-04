@@ -3,6 +3,10 @@
 #downloadmirror=http://astercc.org/download
 #downloadmirror=http://download3.astercc.org
 
+function check_version(){
+	OS=`cat /etc/issue`
+}
+
 function apt_install(){
 	apt-get -y update
 	apt-get -y remove php* 
