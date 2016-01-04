@@ -41,7 +41,7 @@ function ioncube_install(){
 
 	sed -i "/ioncube/d"  /etc/php5/cli/php.ini
 	echo "zend_extension = /usr/local/ioncube/ioncube_loader_lin_5.5.so" >> /etc/php5/cli/php.ini
-	/etc/init.d/php5-fpm restart
+	service php5-fpm restart
 	echo -e "\e[32mIoncube Install OK!\e[m"
 
 }
@@ -219,7 +219,7 @@ read = system,call,agent
 write = all
 EOF
 
-	/etc/init.d/asterisk restart
+	service asterisk restart
 	sysv-rc-conf asterisk on
 	echo -e "\e[32mAsterisk Install OK!\e[m"
 }
@@ -542,20 +542,20 @@ fi
 	ioncube_install
 	get_mysql_passwd
 	set_ami
-	/etc/init.d/asterisk restart
+	service asterisk restart
 	astercc_install
 	nginx_conf_install
 	service mysql restart
 	redis_install
-	php5_redis_install
+#	php5_redis_install
 	UI
 	echo "asterisk ALL=NOPASSWD :/etc/init.d/asterisk" >> /etc/sudoers
 	echo "asterisk ALL = NOPASSWD: /usr/bin/reboot" >> /etc/sudoers
 	echo "asterisk ALL = NOPASSWD: /sbin/shutdown" >> /etc/sudoers
 	/bin/rm -rf /tmp/.mysql_root_pw.$$
 	ln -s /var/lib/asterisk/moh /var/lib/asterisk/mohmp3
-	/etc/init.d/php5-fpm restart
-	/etc/init.d/asterccd restart
+	service php5-fpm restart
+	service asterccd restart
 	echo -e "\e[32masterCC Commercial installation finish!\e[m";
 }
 
