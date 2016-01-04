@@ -8,8 +8,9 @@ function apt_install(){
 	apt-get -y remove php* 
 	apt-get -y remove asterisk*
 	apt-get -y install python-software-properties  openvpn software-properties-common unzip bzip2 postfix ncurses-dev hylafax-client hylafax-server iaxmodem cron  libncurses5-dev libncurses5 build-essential sox  make bison flex libssl-dev unzip libpcre3 libpcre3-dev unzip make sysv-rc-conf
-	add-apt-repository ppa:ondrej/php5
-	apt-get -y install mysql-server-5.6 mysql-server-core-5.6 mysql-client-5.6
+	add-apt-repository -y ppa:ondrej/php5
+	add-apt-repository -y ppa:ondrej/mysql-5.6
+	apt-get -y install mysql-server mysql-client
 	apt-get update
 	apt-get -y linux-image-$(uname -r)
 	apt-get -y sudo
