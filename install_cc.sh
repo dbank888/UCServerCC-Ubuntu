@@ -21,7 +21,7 @@ function apt_install(){
 }
 
 function ioncube_install(){
-	eecho -e "\e[32mStarting Install ioncube\e[m"
+	echo -e "\e[32mStarting Install ioncube\e[m"
 	cd /usr/src
         bit=`getconf LONG_BIT`
         if [ $bit == 32 ]; then
