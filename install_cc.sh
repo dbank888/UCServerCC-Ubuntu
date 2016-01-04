@@ -3,15 +3,6 @@
 #downloadmirror=http://astercc.org/download
 #downloadmirror=http://download3.astercc.org
 
-function check_version(){
-	OS=`head -n 1 /etc/issue |awk '{ print $2}'`
-	if [ "$OS" -lt 14.04 ]
-	then
-        	echo "Ubuntu version must be 14.04.3 or newer version"
-        	exit 0
-	fi 
-}
-
 function apt_install(){
 	apt-get -y update
 	apt-get -y remove php* 
@@ -56,7 +47,7 @@ function ioncube_install(){
 
 function php_install(){
 	echo -e "\e[32mStarting Install PHP-Fpm\e[m"
-	apt-get -y  --force-yes install php5-cli php5-common php5-fpm php5-cgi php5-mysql php5-gd php5-redis php5-curl php5-readline
+	apt-get -y  --force-yes install php5-dev php5-cli php5-common php5-fpm php5-cgi php5-mysql php5-gd php5-redis php5-curl php5-readline
 	sed -i "s/short_open_tag = Off/short_open_tag = On/" /etc/php5/fpm/php.ini
 	sed -i "s/memory_limit = 16M /memory_limit = 128M /" /etc/php5/fpm/php.ini
 	sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 20M /" /etc/php5/fpm/php.ini
@@ -84,7 +75,19 @@ function redis_install(){
 	sysv-rc-conf redis on
 	echo -e "\e[32redis Install OK!\e[m"
 }
-
+function php5_redis_install(){
+	echo "\e[32mStarting Install php5-redis\e[m"
+	cd /usr/src
+	git clone https://github.com/phpredis/phpredis
+	cd phpredis
+	/usr/bin/phpize
+	./configure --with-php-config=/usr/bin/php-config
+	make
+	make install
+cat > /etc/php5/mods-available/redis.ini << EOF
+extension="redis.so"
+EOF
+}
 function mpg123_install(){
 	echo -e "\e[32mStarting Install MPG123\e[m"
 	cd /usr/src
@@ -544,6 +547,7 @@ fi
 	nginx_conf_install
 	service mysql restart
 	redis_install
+	php5_redis_install
 	UI
 	echo "asterisk ALL=NOPASSWD :/etc/init.d/asterisk" >> /etc/sudoers
 	echo "asterisk ALL = NOPASSWD: /usr/bin/reboot" >> /etc/sudoers
