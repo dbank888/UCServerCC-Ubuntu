@@ -5,11 +5,11 @@
 
 function check_version(){
 	OS=`head -n 1 /etc/issue |awk '{ print $2}'`
-	if [ "$OS" != 14.04.5 ]
+	if [ "$OS" < 14.04.3 ]
 	then
-        echo "Ubuntu version must be 14.04.5"
-        exit 0
-fi 
+        	echo "Ubuntu version must be 14.04.3"
+        	exit 0
+	fi 
 }
 
 function apt_install(){
