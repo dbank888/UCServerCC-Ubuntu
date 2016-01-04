@@ -5,7 +5,7 @@
 
 function check_version(){
 	OS=`head -n 1 /etc/issue |awk '{ print $2}'`
-	if [ "$OS" -lt 14.04.3 ]
+	if [ "$OS" -lt 14.04 ]
 	then
         	echo "Ubuntu version must be 14.04.3 or newer version"
         	exit 0
