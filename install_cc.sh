@@ -58,7 +58,7 @@ function php_install(){
 	sed -i "s/group = www-data/group = asterisk/" /etc/php5/fpm/pool.d/www.conf
 	sed -i "s/listen = \/var\/run\/php5-fpm.sock/listen = 127.0.0.1:9000/" /etc/php5/fpm/pool.d/www.conf
 	update-rc.d php5-fpm defaults
-cat /etc/init.d/php5-frpm <<EOF
+cat /etc/init.d/php5-frpm << EOF
 #!/bin/bash
 #
 # Startup script for the PHP-FPM server.
