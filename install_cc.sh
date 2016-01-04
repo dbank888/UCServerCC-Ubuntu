@@ -4,7 +4,12 @@
 #downloadmirror=http://download3.astercc.org
 
 function check_version(){
-	OS=`cat /etc/issue`
+	OS=`head -n 1 /etc/issue |awk '{ print $2}'`
+	if [ "$OS" != 14.04.5 ]
+	then
+        echo "Ubuntu version must be 14.04.5"
+        exit 0
+fi 
 }
 
 function apt_install(){
@@ -522,6 +527,7 @@ fi
 	fi
 	. ./ucservercc1
 	/bin/rm -rf ./ucservercc1
+	check_version
 	apt_install
 	php_install
 	dahdi_install
