@@ -75,6 +75,8 @@ function redis_install(){
 	bash ./utils/install_server.sh
 	mv /etc/init.d/redis_6379 /etc/init.d/redis
 	sysv-rc-conf redis on
+	sed -i "s/# bind 127.0.0.1/bind 127.0.0.1/" /etc/redis/6379.conf
+	service redis restart
 	echo -e "\e[32redis Install OK!\e[m"
 }
 function php5_redis_install(){
