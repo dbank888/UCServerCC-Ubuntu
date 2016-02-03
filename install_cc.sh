@@ -111,10 +111,7 @@ function dahdi_install() {
 	echo -e "\e[32mStarting Install DAHDI\e[m"
 	cd /usr/src
 	if [ ! -e ./dahdi-linux-complete-$dahdiver.tar.gz ]; then
-		wget $downloadmirror/dahdi-linux-complete-$dahdiver.tar.gz
-		if [ ! -e ./dahdi-linux-complete-$dahdiver.tar.gz ]; then
-			wget $downloadmirror/dahdi-linux-complete/releases/dahdi-linux-complete-$dahdiver.tar.gz
-		fi
+		wget $downloadmirror/dahdi-linux-complete-2.10.2.tar.gz
 	fi
 	tar zxf dahdi-linux-complete-$dahdiver.tar.gz
 	if [ $? != 0 ]; then
@@ -122,7 +119,7 @@ function dahdi_install() {
 		exit 1
 	fi
 
-	cd dahdi-linux-complete-$dahdiver
+	cd dahdi-linux-2.11.0
 	make
 	if [ $? != 0 ]; then
 		apt-get -y upgrade;
