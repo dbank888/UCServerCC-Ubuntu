@@ -119,7 +119,7 @@ function dahdi_install() {
 		exit 1
 	fi
 
-	cd dahdi-linux-2.11.0
+	cd dahdi-linux-2.10.2
 	make
 	if [ $? != 0 ]; then
 		apt-get -y upgrade;
