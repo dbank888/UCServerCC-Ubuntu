@@ -113,7 +113,7 @@ function dahdi_install() {
 	if [ ! -e ./dahdi-linux-complete-$dahdiver.tar.gz ]; then
 		wget $downloadmirror/dahdi-linux-complete-2.10.2.tar.gz
 	fi
-	tar zxf dahdi-linux-complete-$dahdiver.tar.gz
+	tar zxf dahdi-linux-complete-2.10.2.tar.gz
 	if [ $? != 0 ]; then
 		echo -e "fatal: dont have valid dahdi tar package\n"
 		exit 1
