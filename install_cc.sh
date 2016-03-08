@@ -7,7 +7,7 @@ function apt_install(){
 	apt-get -y update
 	apt-get -y remove php* 
 	apt-get -y remove asterisk*
-	apt-get -y install libxml++2.6-dev python-software-properties  openvpn software-properties-common unzip bzip2 postfix ncurses-dev hylafax-client hylafax-server iaxmodem cron  libncurses5-dev libncurses5 build-essential sox  make bison flex libssl-dev unzip libpcre3 libpcre3-dev unzip make sysv-rc-conf
+	apt-get -y install patch libxml++2.6-dev python-software-properties  openvpn software-properties-common unzip bzip2 postfix ncurses-dev hylafax-client hylafax-server iaxmodem cron  libncurses5-dev libncurses5 build-essential sox  make bison flex libssl-dev unzip libpcre3 libpcre3-dev unzip make sysv-rc-conf
 	add-apt-repository -y ppa:ondrej/php5
 	add-apt-repository -y ppa:ondrej/mysql-5.6
 	apt-get -y install mysql-server mysql-client
