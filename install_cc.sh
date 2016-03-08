@@ -189,6 +189,10 @@ function asterisk_install() {
 	fi
 
 	cd asterisk-$asteriskver
+	if [ ! -e ./no-ssl3-method.patch ]; then
+		wget $downloadmirror/no-ssl3-method.patch
+	fi
+	patch main/tcptls.c <no-ssl3-method.patch 
 	./configure '-disable-xmldoc'
 	make
 	make install
